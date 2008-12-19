@@ -16,6 +16,6 @@
             <input class="indented-submit" type="submit" value="Create!" />
         </div>
       </fieldset>
-        <input type="hidden" name="deck_id" value="${c.deck_id}" />
+        <input type="hidden" name="deck_id" value="${c.deck_id_base30}" />
      </form>
 

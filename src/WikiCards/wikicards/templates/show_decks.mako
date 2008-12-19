@@ -2,7 +2,7 @@
     <h4>Available Decks</h4>
     <ul>
 	% for deck in c.decks:
-        <li><a href="/deck/${deck.key().id()}">${deck.name}</a></li>
+        <li><a href="/deck/${deck.id_base30}">${deck.name}</a></li>
 	% endfor
     </ul>
     <div class="selfclear">

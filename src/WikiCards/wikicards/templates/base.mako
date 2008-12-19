@@ -10,12 +10,16 @@
  </head>
  <body>
     <div id="container" class="selfclear">
-
         <div id="header">
             <h1 id="logo">Wiki Tutor</h1>
             <h3 id="tag-line">Teach some. Learn some. </h3>
         </div><!-- /#header -->
         <div id = "login">
+          % if c.logged_in:
+              <a href="${c.auth_url}">Logout</a>
+          % else:
+              <a href="${c.auth_url}">Login</a>
+          % endif
         </div><!-- /#login -->
         <div id="main">
             <div id="content">

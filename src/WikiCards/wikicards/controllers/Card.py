@@ -18,8 +18,8 @@ class CardController(BaseController):
 
     @dispatch_on(POST="_create_me")
     def create(self):
-       c.deck_id = int(request.params['deck_id'])
-       c.deck = Deck.get_by_id(c.deck_id)
+       c.deck_id_base30 = request.params['deck_id']
+       c.deck = Deck.get_by_id_base30(c.deck_id_base30)
        c.title = " | Create A New Card"
        return render('create_card.mako')
        
@@ -27,11 +27,12 @@ class CardController(BaseController):
         #create the card
         card = Card(term=request.params.get('term'), definition=request.params.get('definition'))
         card.put()
+        card.id_base30 = h.make_identifier(card.key().id())
+        card.put()
         
         #get the deck that the term belongs to
-        deck_id = int(request.params['deck_id'])
-        deck = Deck.get_by_id(deck_id)
-        
+        deck_id_base30 = request.params['deck_id']
+        deck = Deck.get_by_id_base30(deck_id_base30)      
             
         if deck.cards == None:
             deck.cards = []
@@ -39,4 +40,4 @@ class CardController(BaseController):
         deck.cards.append(card.key())
         deck.put()
         
-        redirect_to(h.url_for(controller='Deck', action='view', deck_id=deck_id))
+        redirect_to(h.url_for(controller='Deck', action='view', deck_id=deck_id_base30))

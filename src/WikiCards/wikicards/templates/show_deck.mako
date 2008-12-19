@@ -3,7 +3,7 @@
       <a href="/"><< All Decks</a>
     </div>
     <h3>
-       Deck Name: ${c.deck.name}
+       Deck Name: ${c.deck.name} ${c.id_base30}
     </h3>
 
     % if len(c.cards) != 0:

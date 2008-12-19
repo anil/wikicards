@@ -5,10 +5,20 @@ class Card(db.Model):
     definition = db.StringProperty(required=True)
     last_edited_datetime = db.DateTimeProperty(auto_now=True, auto_now_add=True)
     created_datetime = db.DateTimeProperty(auto_now=False, auto_now_add=True)
+    id_base30 = db.StringProperty()
+    
+    @classmethod
+    def get_by_id_base30(cls, id_base30):
+        return Card.all().filter('id_base30 = ', id_base30).get()
 
 class Deck(db.Model):
     name = db.StringProperty(required=True)
     cards = db.ListProperty(db.Key, default=None)
     last_edited_datetime = db.DateTimeProperty(auto_now=True, auto_now_add=True)
     created_datetime = db.DateTimeProperty(auto_now=False, auto_now_add=True)
+    id_base30 = db.StringProperty()
+    
+    @classmethod
+    def get_by_id_base30(cls, id_base30):
+        return Deck.all().filter('id_base30 = ', id_base30).get()
     
