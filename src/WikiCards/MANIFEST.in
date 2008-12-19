@@ -1,0 +1,3 @@
+include wikicards/config/deployment.ini_tmpl
+recursive-include wikicards/public *
+recursive-include wikicards/templates *

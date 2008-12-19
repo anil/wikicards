@@ -1,0 +1,14 @@
+from google.appengine.ext import db
+
+class Card(db.Model):
+    term = db.StringProperty(required=True)
+    definition = db.StringProperty(required=True)
+    last_edited_datetime = db.DateTimeProperty(auto_now=True, auto_now_add=True)
+    created_datetime = db.DateTimeProperty(auto_now=False, auto_now_add=True)
+
+class Deck(db.Model):
+    name = db.StringProperty(required=True)
+    cards = db.ListProperty(db.Key, default=None)
+    last_edited_datetime = db.DateTimeProperty(auto_now=True, auto_now_add=True)
+    created_datetime = db.DateTimeProperty(auto_now=False, auto_now_add=True)
+    
