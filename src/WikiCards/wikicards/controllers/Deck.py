@@ -32,11 +32,15 @@ class DeckController(BaseController):
         return render('/show_deck.mako')
 
     def _create_me(self):
-        deck = Deck(name=request.params.get('deck_name', ''))
-        deck.put()
-        deck.id_base30 = h.make_identifier(deck.key().id())
-        deck.put()
-        redirect_to(h.url_for(controller='Deck', action='index'))
+        user = users.get_current_user()
+        if user:
+            deck = Deck(name=request.params.get('deck_name', ''), create_user = user, last_edit_user = user)
+            deck.put()
+            deck.id_base30 = h.make_identifier(deck.key().id())
+            deck.put()
+            redirect_to(h.url_for(controller='Deck', action='view', deck_id=deck.id_base30))
+        else:
+            raise 'not logged in'
 
     @dispatch_on(POST="_create_me")
     def create(self):
@@ -45,5 +49,5 @@ class DeckController(BaseController):
             c.title = " | Create a New Deck"
             return render('/create_deck.mako')
         else:
-            c.login_url = users.create_login_url("/")
+            c.login_url = users.create_login_url(h.url_for(controller="Deck", action="create"))
             return render('/login.mako')
