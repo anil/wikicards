@@ -212,23 +212,29 @@ tr.odd a:visited {
 color:#000;
 }
 
-dl {
- padding-top: 1em;   
-}
-
-dt {
- float: left;
- clear: right;
- width: 10em;
-}
-
-dt, dd {
-   padding: 1em; 
-}
-
 ul {
  padding-left: 2em;   
  padding-bottom: 1em;
+}
+
+table {
+  margin-top: 1em;   
+}
+
+td.term, td.definition {
+ padding: 1em;   
+}
+
+td.term {
+ width: 20em;   
+}
+
+td.definition {
+ width: 30em;   
+}
+
+td.heading {
+ font-weight: bold;   
 }
 
 /* End - Utility Classes */

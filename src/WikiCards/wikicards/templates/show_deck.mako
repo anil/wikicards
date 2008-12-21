@@ -7,17 +7,20 @@
     </h3>
 
     % if len(c.cards) != 0:
-    <dl>
       <div class="selfclear">
         <a href="/card/create?deck_id=${c.deck_id}">Add Card</a>
       </div>
-      <dt><strong>Term</strong></dt>
-      <dd><strong>Definition</strong></dd>
+      <table border="1">
+      <tr>
+        <td class="term heading">Term</td>
+        <td class="definition heading">Definition</td>
       % for card in c.cards:
-          <dt>${card.term}</dt>
-          <dd>${card.definition}</dd>
+        <tr>  
+          <td class="term">${card.term}</td>
+          <td class="definition">${card.definition}</td>
+        </tr>
       % endfor
-    </dl>
+    </table>
     % else:
       There are currently no cards in this deck.  <a href="/card/create?deck_id=${c.deck_id}">Add one.</a>
     % endif
