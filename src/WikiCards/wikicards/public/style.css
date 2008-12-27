@@ -221,16 +221,20 @@ table {
   margin-top: 1em;   
 }
 
-td.term, td.definition {
+td {
  padding: 1em;   
 }
 
 td.term {
- width: 20em;   
+ width: 15em;   
 }
 
 td.definition {
- width: 30em;   
+ width: 35em;   
+}
+
+td.term {
+ width: 15em;   
 }
 
 td.heading {

@@ -30,7 +30,32 @@ class CardController(BaseController):
             continue_url = h.url_for(controller="Card", action="create", deck_id=c.deck_id_base30)
             c.login_url = users.create_login_url(continue_url)
             return render('/login.mako')
-       
+
+    @dispatch_on(POST="_update_me")     
+    def update(self, card_id):
+        user = users.get_current_user()
+        c.deck_id = request.params.get('referring_deck')
+        
+        if user:
+            c.card = Card.get_by_id_base30(card_id)
+            return render('/update_card.mako')
+        else:
+            continue_url = h.url_for(controller="Card", action="update", card_id=card_id, referring_deck = c.deck_id)
+            c.login_url = users.create_login_url(continue_url)
+            return render('/login.mako')
+        
+    def _update_me(self):
+        user = users.get_current_user()
+        if user:
+            card = Card.get_by_id_base30(request.params.get('card_id'))
+            card.term = request.params.get('term')
+            card.definition = request.params.get('definition')
+            card.last_edit_user = user
+            card.put()
+            redirect_to(h.url_for(controller="/Deck", action="view", deck_id=request.params.get('deck_id')))
+        else:
+            raise 'you have to be logged in'
+        
     def _create_me(self):
         user = users.get_current_user()
         if user:

@@ -1,8 +1,8 @@
 from google.appengine.ext import db
 
 class Card(db.Model):
-    term = db.StringProperty(required=True)
-    definition = db.StringProperty(required=True)
+    term = db.TextProperty(required=True)
+    definition = db.TextProperty(required=True)
     
     #time of creation and last edit
     last_edited_datetime = db.DateTimeProperty(auto_now=True, auto_now_add=True)

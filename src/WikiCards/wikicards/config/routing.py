@@ -27,4 +27,6 @@ def make_map():
     
     #Card routes
     map.connect('create_card','/card/create', controller='Card', action='create')
+    map.connect('create_card','/card/:card_id/update', controller='Card', action='update')
+    
     return map
