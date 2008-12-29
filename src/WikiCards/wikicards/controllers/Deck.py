@@ -34,7 +34,7 @@ class DeckController(BaseController):
     def _create_me(self):
         user = users.get_current_user()
         if user:
-            deck = Deck(name=request.params.get('deck_name', ''), create_user = user, last_edit_user = user)
+            deck = Deck(name=request.params.get('deck_name', ''), created_by = user, last_edited_by = user)
             deck.put()
             deck.id_base30 = h.make_identifier(deck.key().id())
             deck.put()

@@ -50,7 +50,7 @@ class CardController(BaseController):
             card = Card.get_by_id_base30(request.params.get('card_id'))
             card.term = request.params.get('term')
             card.definition = request.params.get('definition')
-            card.last_edit_user = user
+            card.last_edited_by = user
             card.put()
             redirect_to(h.url_for(controller="/Deck", action="view", deck_id=request.params.get('deck_id')))
         else:
@@ -61,7 +61,7 @@ class CardController(BaseController):
         if user:
             #create the card
             card = Card(term=request.params.get('term'), definition=request.params.get('definition'),
-                        create_user = user, last_edit_user = user)
+                        created_by = user, last_edited_by = user)
             card.put()
             card.id_base30 = h.make_identifier(card.key().id())
             card.put()
@@ -74,7 +74,7 @@ class CardController(BaseController):
                 deck.cards = []
         
             deck.cards.append(card.key())
-            deck.last_edit_user = user
+            deck.last_edited_by = user
             deck.put()
         
             redirect_to(h.url_for(controller='Deck', action='view', deck_id=deck_id_base30))
