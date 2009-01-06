@@ -30,6 +30,12 @@ class CardController(BaseController):
             continue_url = h.url_for(controller="Card", action="create", deck_id=c.deck_id_base30)
             c.login_url = users.create_login_url(continue_url)
             return render('/login.mako')
+            
+    def view(self, card_id):
+        current_card = Card.get_by_id_base30(card_id)
+        c.cards = []
+        c.cards.append(current_card)
+        return render('/view_card.mako')
 
     @dispatch_on(POST="_update_me")     
     def update(self, card_id):
