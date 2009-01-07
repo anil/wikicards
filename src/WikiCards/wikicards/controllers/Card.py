@@ -53,11 +53,26 @@ class CardController(BaseController):
     def _update_me(self):
         user = users.get_current_user()
         if user:
-            card = Card.get_by_id_base30(request.params.get('card_id'))
-            card.term = request.params.get('term')
-            card.definition = request.params.get('definition')
-            card.last_edited_by = user
-            card.put()
+            card_old = Card.get_by_id_base30(request.params.get('card_id'))
+            card_new = Card(term = request.params.get('term'), definition = request.params.get('definition'),
+                            created_by = user, last_edited_by = user)
+            card_new.put()
+            card_new.id_base30 = h.make_identifier(card_new.key().id())
+            card_new.put()
+                        
+            deck_id_base30 = request.params['deck_id']
+            deck = Deck.get_by_id_base30(deck_id_base30)
+            
+            if deck.cards == None:
+                deck.cards = []
+            
+            # Remove the old revision of the card from the deck
+            # and add the new revision of the card into the deck
+            deck.cards.append(card_new.key())
+            deck.cards.remove(card_old.key())
+            deck.last_edited_by = user
+            deck.put()
+            
             redirect_to(h.url_for(controller="/Deck", action="view", deck_id=request.params.get('deck_id')))
         else:
             raise 'you have to be logged in'

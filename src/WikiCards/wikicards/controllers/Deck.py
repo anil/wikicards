@@ -22,7 +22,7 @@ class DeckController(BaseController):
     def view(self, deck_id=None):
         c.deck = Deck.get_by_id_base30(deck_id)
         card_keys = c.deck.cards
-        
+                
         c.cards = []
         for key in card_keys:
             c.cards.append(db.get(key))
