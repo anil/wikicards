@@ -23,7 +23,7 @@ class CardController(BaseController):
         user = users.get_current_user()
         c.deck_id_base30 = request.params['deck_id']
         if user:
-            c.deck = Deck.get_by_id_base30(c.deck_id_base30)
+            c.deck = Deck.get_current_by_id_base30(c.deck_id_base30)
             c.title = " | Create A New Card"
             return render('create_card.mako')
         else:
@@ -32,9 +32,9 @@ class CardController(BaseController):
             return render('/login.mako')
             
     def view(self, card_id):
-        current_card = Card.get_by_id_base30(card_id)
-        c.cards = []
-        c.cards.append(current_card)
+        c.cards = Card.get_all_by_id_base30(card_id)
+        c.title = " | Card Revision History"
+        c.num_cards = len(c.cards)
         return render('/view_card.mako')
 
     @dispatch_on(POST="_update_me")     
@@ -43,7 +43,7 @@ class CardController(BaseController):
         c.deck_id = request.params.get('referring_deck')
         
         if user:
-            c.card = Card.get_by_id_base30(card_id)
+            c.card = Card.get_current_by_id_base30(card_id)
             return render('/update_card.mako')
         else:
             continue_url = h.url_for(controller="Card", action="update", card_id=card_id, referring_deck = c.deck_id)
@@ -53,15 +53,13 @@ class CardController(BaseController):
     def _update_me(self):
         user = users.get_current_user()
         if user:
-            card_old = Card.get_by_id_base30(request.params.get('card_id'))
+            card_old = Card.get_current_by_id_base30(request.params.get('card_id'))
             card_new = Card(term = request.params.get('term'), definition = request.params.get('definition'),
-                            created_by = user, last_edited_by = user)
-            card_new.put()
-            card_new.id_base30 = h.make_identifier(card_new.key().id())
+                            created_by = user, last_edited_by = user, id_base30 = card_old.id_base30)
             card_new.put()
                         
             deck_id_base30 = request.params['deck_id']
-            deck = Deck.get_by_id_base30(deck_id_base30)
+            deck = Deck.get_current_by_id_base30(deck_id_base30)
             
             if deck.cards == None:
                 deck.cards = []
@@ -89,7 +87,7 @@ class CardController(BaseController):
         
             #get the deck that the term belongs to
             deck_id_base30 = request.params['deck_id']
-            deck = Deck.get_by_id_base30(deck_id_base30)      
+            deck = Deck.get_current_by_id_base30(deck_id_base30)      
             
             if deck.cards == None:
                 deck.cards = []

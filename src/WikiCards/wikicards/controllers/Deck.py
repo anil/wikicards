@@ -20,7 +20,7 @@ class DeckController(BaseController):
         return render('/show_decks.mako')
 
     def view(self, deck_id=None):
-        c.deck = Deck.get_by_id_base30(deck_id)
+        c.deck = Deck.get_current_by_id_base30(deck_id)
         card_keys = c.deck.cards
                 
         c.cards = []

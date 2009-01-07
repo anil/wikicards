@@ -17,8 +17,12 @@ class WikiableContent(db.Model):
     last_edited_by = db.UserProperty(required=True)
     
     @classmethod
-    def get_by_id_base30(cls, id_base30):
-        return cls.all().filter('id_base30 = ', id_base30).get()
+    def get_current_by_id_base30(cls, id_base30):
+        return cls.all().filter('id_base30 = ', id_base30).order('-created').get()
+        
+    @classmethod
+    def get_all_by_id_base30(cls, id_base30):
+        return cls.all().filter('id_base30 = ', id_base30).order('-created').fetch(1000)
 
 class Card(WikiableContent):
     term = db.TextProperty(required=True)
