@@ -35,7 +35,16 @@ class CardController(BaseController):
         c.cards = Card.get_all_by_id_base30(card_id)
         c.title = " | Card Revision History"
         c.num_cards = len(c.cards)
+        c.deck_id = request.params.get('referring_deck')
         return render('/view_card.mako')
+    
+    @dispatch_on(POST="_update_me")     
+    def revert(self, card_id):
+        revision_number = request.params.get('revision')
+        c.current_card = Card.get_current_by_id_base30(card_id)
+        c.old_card = Card.get_revision_by_id_base30(card_id, int(revision_number))
+        c.deck_id = request.params.get('referring_deck')
+        return render('/revert_card.mako')
 
     @dispatch_on(POST="_update_me")     
     def update(self, card_id):

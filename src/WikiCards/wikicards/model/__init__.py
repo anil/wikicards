@@ -21,6 +21,12 @@ class WikiableContent(db.Model):
         return cls.all().filter('id_base30 = ', id_base30).order('-created').get()
         
     @classmethod
+    def get_revision_by_id_base30(cls, id_base30, revision_number):
+        all = cls.all().filter('id_base30 = ', id_base30).order('-created').fetch(1000)
+        size = len(all)
+        return all[size-revision_number]
+        
+    @classmethod
     def get_all_by_id_base30(cls, id_base30):
         return cls.all().filter('id_base30 = ', id_base30).order('-created').fetch(1000)
 

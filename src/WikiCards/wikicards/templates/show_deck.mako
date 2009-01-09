@@ -21,7 +21,7 @@
           <td class="definition">${card.definition}</td>
           <td class="admin">
              <a href="${h.url_for(controller="/Card", action="update", card_id=card.id_base30, referring_deck=c.deck_id)}">Edit</a> / 
-             <a href="${h.url_for(controller="/Card", action="view", card_id=card.id_base30)}">History</a>
+             <a href="${h.url_for(controller="/Card", action="view", card_id=card.id_base30, referring_deck=c.deck_id)}">History</a>
            </td>
         </tr>
       % endfor

@@ -30,6 +30,8 @@ def make_map():
     map.connect('create_card','/card/create', controller='Card', action='create')
     map.connect('update_card','/card/:card_id/update', controller='Card', action='update')
     map.connect('view_card','/card/:card_id/view', controller='Card', action='view')
+    map.connect('revert_card','/card/:card_id/revert', controller='Card', action='revert')
+    
     
     
     return map

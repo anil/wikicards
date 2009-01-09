@@ -11,7 +11,9 @@
       <td class="term">${c.cards[counter].term}</td>
       <td class="definition">${c.cards[counter].definition}</td>
       <td class="admin">
-          Revert
+          % if counter != 0:
+            <a href="${h.url_for(controller='Card', action='revert', revision=c.num_cards - counter, referring_deck = c.deck_id)}">Revert</a>
+          % endif
        </td>
     </tr>
   % endfor
