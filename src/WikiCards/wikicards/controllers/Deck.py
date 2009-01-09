@@ -9,7 +9,7 @@ from google.appengine.ext import db
 
 import wikicards.lib.helpers as h
 from wikicards.lib.base import BaseController, render
-from wikicards.model import Deck
+from wikicards.model import Deck, Card
 
 log = logging.getLogger(__name__)
 
@@ -21,15 +21,17 @@ class DeckController(BaseController):
 
     def view(self, deck_id=None):
         c.deck = Deck.get_current_by_id_base30(deck_id)
-        card_keys = c.deck.cards
-                
-        c.cards = []
-        for key in card_keys:
-            c.cards.append(db.get(key))
+        c.cards = Card.get(c.deck.cards)
             
         c.title = " | " + c.deck.name
 
         return render('/show_deck.mako')
+        
+    def xml(self, deck_id=None):
+        c.deck = Deck.get_current_by_id_base30(deck_id)
+        c.cards = Card.get(c.deck.cards)                
+            
+        return render('/xml_deck.mako')
 
     def _create_me(self):
         user = users.get_current_user()

@@ -24,6 +24,7 @@ def make_map():
     map.connect('home_page','/', controller='Deck', action='index')
     map.connect('create_deck','/deck/create', controller='Deck', action='create')
     map.connect('view_deck','/deck/:deck_id', controller='Deck', action='view')
+    map.connect('xml_deck','/deck/:deck_id/xml', controller='Deck', action='xml')
     
     #Card routes
     map.connect('create_card','/card/create', controller='Card', action='create')

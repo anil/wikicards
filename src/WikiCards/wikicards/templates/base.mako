@@ -11,7 +11,7 @@
  <body>
     <div id="container" class="selfclear">
         <div id="header">
-            <h1 id="logo">Wiki Tutor</h1>
+            <h1 id="logo">FC Wiki</h1>
             <h3 id="tag-line">Teach some. Learn some. </h3>
         </div><!-- /#header -->
         <div id = "login">
