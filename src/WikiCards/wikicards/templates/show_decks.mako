@@ -1,5 +1,5 @@
 <%inherit file="/base.mako" />
-    <h4>Available Decks</h4>
+    <h4>Newest Decks</h4>
     <ul>
 	% for deck in c.decks:
         <li><a href="/deck/${deck.id_base30}">${deck.name}</a></li>

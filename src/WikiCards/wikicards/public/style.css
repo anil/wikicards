@@ -10,7 +10,7 @@ line-height:1.25em;
 
 body {
 font:small 'Helvetica Neue', Helvetica, Arial, sans-serif;
-background:#bbb;
+background:#fff;
 color:#000;
 text-align:center; /* silly IE 5.5 */
 }
@@ -49,7 +49,7 @@ border:0 none transparent;
 
 a:link,
 a:visited {
-color:#15a69d;
+/* color:#15a69d; */
 }
 
 a:hover {
@@ -74,7 +74,8 @@ blockquote
 quotes:"" "";
 }
 
-table { border-collapse:collapse;
+table { 
+border-collapse:collapse;
 border-spacing:0;
 font-size: 100%;
 }
@@ -247,10 +248,10 @@ td.heading {
 
 
 #container {
-width:760px;
+width:900px;
 background:#fff;
 color:#000;
-border:1px solid #999;
+border:0px solid #999;
 padding:0 0 108px;
 margin:1.5em auto;
 text-align:left; /* silly IE 5.5 */
@@ -260,6 +261,7 @@ text-align:left; /* silly IE 5.5 */
 height:110px;
 background-color:black;
 }
+
 #tag-line {
 color: white;
 padding-left: 60px;
