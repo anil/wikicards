@@ -33,6 +33,7 @@ class WikiableContent(db.Model):
 class Card(WikiableContent):
     term = db.TextProperty(required=True)
     definition = db.TextProperty(required=True)
+    decks = db.ListProperty(db.Key, default=None)
     
 
 class Deck(WikiableContent):
