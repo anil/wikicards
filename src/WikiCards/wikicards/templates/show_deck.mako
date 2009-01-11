@@ -7,9 +7,6 @@
     </h3>
 
     % if len(c.cards) != 0:
-      <div class="selfclear">
-        <a href="/card/create?deck_id=${c.deck_id}">Add Card</a>
-      </div>
       <table border="1">
       <tr>
         <td class="term heading">Term</td>
@@ -26,6 +23,15 @@
         </tr>
       % endfor
     </table>
+    <div class="selfclear" id="deck-actions">
+      <h4>Deck Actions</h4>
+        <div>
+           <a href="/card/create?deck_id=${c.deck_id}">Add Card</a>
+        </div>
+        <div>
+          <a href="${h.url_for(controller='Deck', action='quiz', deck_id=c.deck_id)}">Take a quiz!</a>
+        </div>
+    </div>
     % else:
       There are currently no cards in this deck.  <a href="/card/create?deck_id=${c.deck_id}">Add one.</a>
     % endif

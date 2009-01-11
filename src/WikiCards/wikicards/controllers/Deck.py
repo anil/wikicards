@@ -32,6 +32,10 @@ class DeckController(BaseController):
         c.cards = Card.get(c.deck.cards)                
             
         return render('/xml_deck.mako')
+        
+    def quiz(self, deck_id=None):
+        c.deck = Deck.get_current_by_id_base30(deck_id)
+        return render('quiz_deck.mako')
 
     def _create_me(self):
         user = users.get_current_user()
