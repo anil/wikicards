@@ -29,12 +29,12 @@ class DeckController(BaseController):
         
     def xml(self, deck_id=None):
         c.deck = Deck.get_current_by_id_base30(deck_id)
-        c.cards = Card.get(c.deck.cards)                
-            
+        c.cards = Card.get(c.deck.cards)                    
         return render('/xml_deck.mako')
         
     def quiz(self, deck_id=None):
         c.deck = Deck.get_current_by_id_base30(deck_id)
+        c.cards = Card.get(c.deck.cards)                
         return render('quiz_deck.mako')
 
     def _create_me(self):

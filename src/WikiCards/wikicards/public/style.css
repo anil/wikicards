@@ -309,6 +309,16 @@ margin-top: 1em;
 /* Targed Styles */
 #deck-actions {
  margin-top: 2em;   
-    
 }
 
+#card-list {
+ visibility: hidden;   
+}
+
+#card-def {
+ display: none;
+}
+
+#card-def, #card-term {
+ font-size: 5em;   
+}
