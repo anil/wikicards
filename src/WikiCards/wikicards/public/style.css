@@ -317,8 +317,15 @@ margin-top: 1em;
 
 #card-def {
  display: none;
+ font-size: 1em; 
 }
 
-#card-def, #card-term {
- font-size: 5em;   
+#card-term {
+   font-size: 5em; 
+}
+
+#card-description {
+ text-align: left;
+ padding-top: 1em;
+ font-weight:bold;
 }

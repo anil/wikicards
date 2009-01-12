@@ -6,15 +6,16 @@
      index = 0;
      
      function change_card_description() {
-        if ($("#card-description").html() == "Answer") {
-              $("#card-description").html('Question');
+        if ($("#card-description").html() == "Answer:") {
+              $("#card-description").html('Question:');
         }
         else {
-            $("#card-description").html('Answer');  
+            $("#card-description").html('Answer:');  
         }
      }
      
      function change_card() {
+         $("#card-description").html('Question:');
          $("#card-term").show();
 		 $("#card-def").hide();
          $("#card-term").html(cards[index].innerHTML);
