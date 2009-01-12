@@ -1,10 +1,15 @@
 <%inherit file="/base.mako" />
 <script type="text/javascript">
- $(document).ready(function() {     
+ $(document).ready(function() {
+     cards = $(".card").children();
+     num_cards = cards.length
+     index = 0;
+         
      $("#dialog").dialog({
 			bgiframe: true,
 			resizable: false,
-			height:500,
+			height:475,
+			width: 700,
 			modal: true,
 			overlay: {
 				backgroundColor: '#000',
@@ -12,10 +17,25 @@
 			},
 			buttons: {
 				'Next Card': function() {
-					$(this).dialog('close');
+					index = index + 2;
+					if (index == num_cards) {
+					   index = 0;   
+				    }
+				    $("#card-term").show();
+				    $("#card-def").hide();
+                    $("#card-term").html(cards[index].innerHTML);
+                    $("#card-def").html(cards[index+1].innerHTML);
 				},
 				'Previous Card': function() {
-					$(this).dialog('close');
+				    index = index - 2;				    
+				    if (index < 0) {
+					   index = num_cards - 2;   
+				    }
+				    $("#card-term").show();
+				    $("#card-def").hide();
+				    $("#card-term").html(cards[index].innerHTML);
+                    $("#card-def").html(cards[index+1].innerHTML);
+					
 				},
 				'Flip Card':function() {
 				    $("#card-term").toggle();
@@ -40,7 +60,7 @@ Quiz for deck: ${c.deck.name}
   % endfor
 </div>
 
-<div id="dialog" title="Quiz for the Deck">
+<div id="dialog" title="${c.deck.name}">
     <p id="card-term">${c.cards[0].term}</p>
     <p id="card-def">${c.cards[0].definition}</p>
 </div>
