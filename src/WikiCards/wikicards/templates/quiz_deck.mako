@@ -4,6 +4,8 @@
      cards = $(".card").children();
      num_cards = cards.length
      index = 0;
+     dialog = null;
+    
      
      function change_card_description() {
         if ($("#card-description").html() == "Answer:") {
@@ -21,6 +23,11 @@
          $("#card-term").html(cards[index].innerHTML);
          $("#card-def").html(cards[index+1].innerHTML);
      }
+     
+     $("#relaunch-link").click (    
+       function () {
+           $("#dialog").dialog('open');
+       });
      
      function launch_dialog() {
          
@@ -67,7 +74,7 @@
 
  });
 </script>
-Quiz for ${c.deck.name} deck.  Click here to relaunch the <a href="#" onClick="launch_dialog();">quiz</a>.
+Quiz for ${c.deck.name} deck.  Click here to relaunch the <a href="#" id="relaunch-link">quiz</a>.
 
 <div id="card-list">
   % for card in c.cards:
