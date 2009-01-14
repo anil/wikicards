@@ -1,8 +1,8 @@
 <%inherit file="/base.mako" />
-Are you sure that you want to revert the card
-with values:
+<strong>Are you sure that you want to revert the card
+with values</strong>:
 
-  <table border="1">
+  <table class="show-revert" border="1">
    <tr>
     <td>Term:</td>
     <td>Definition:</td>
@@ -17,9 +17,9 @@ with values:
    </tr>
   </table>
 
-To:
+<strong>To</strong>:
 
-<table border="1">
+<table class="show-revert" border="1">
  <tr>
   <td>Term:</td>
   <td>Definition:</td>

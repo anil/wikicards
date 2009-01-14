@@ -6,11 +6,11 @@
      <fieldset>
         <div class="selfclear">
             <label for="term">Term:</label>
-            <input type="text" name="term" />
+            <input size="77" type="text" name="term" />
         </div>
         <div class="selfclear">
             <label for="term">Definition:</label>
-            <textarea name="definition"></textarea>
+            <textarea rows="20" cols="80" name="definition"></textarea>
         </div>
         <div class="selfclear">
             <input class="indented-submit" type="submit" value="Create!" />
