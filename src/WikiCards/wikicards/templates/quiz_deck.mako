@@ -21,48 +21,53 @@
          $("#card-term").html(cards[index].innerHTML);
          $("#card-def").html(cards[index+1].innerHTML);
      }
+     
+     function launch_dialog() {
          
-     $("#dialog").dialog({
-			bgiframe: true,
-			resizable: false,
-			height:475,
-			width: 700,
-			modal: true,
-			overlay: {
-				backgroundColor: '#000',
-				opacity: 0.5
-			},
-			buttons: {
-				'Next Card': function() {
-					index = index + 2;
-					if (index == num_cards) {
-					   index = 0;   
-				    }
-				    
-				    change_card();
+         $("#dialog").dialog({
+             bgiframe: true,
+             resizable: false,
+             height:475,
+             width: 700,
+             modal: true,
+             overlay: {
+                 backgroundColor: '#000',
+                 opacity: 0.5
+              },
+             buttons: {
+                'Next Card': function() {
+                    index = index + 2;
+                    if (index == num_cards) {
+                        index = 0;   
+                    }
 
-				},
-				'Previous Card': function() {
-				    index = index - 2;				    
-				    if (index < 0) {
-					   index = num_cards - 2;   
-				    }
+                    change_card();
 
-				    change_card();
+                    },
+                'Previous Card': function() {
+                    index = index - 2;				    
+                    if (index < 0) {
+                      index = num_cards - 2;   
+                     }
 
-					
-				},
-				'Flip Card':function() {
-				    $("#card-term").toggle();
-				    $("#card-def").toggle();
-				    change_card_description();
-				    
-			    }
-			}
-		});	
+                     change_card();
+
+                  },
+                 'Flip Card':function() {
+                     $("#card-term").toggle();
+                     $("#card-def").toggle();
+                     change_card_description();
+                  }
+             }
+          });	
+		
+	 }
+	
+	 launch_dialog();
+
  });
 </script>
-Quiz for deck: ${c.deck.name}
+Quiz for ${c.deck.name} deck.  Click here to relaunch the <a href="#" onClick="launch_dialog();">quiz</a>.
 
 <div id="card-list">
   % for card in c.cards:
