@@ -12,7 +12,7 @@
     <div id="container" class="selfclear">
         <div id="header">
             <h1 id="logo">Flash Cards</h1>
-            <h3 id="tag-line">Teach some. Learn some. </h3>
+            <h3 id="tag-line"> Learn some. Teach some.</h3>
         </div><!-- /#header -->
         <div id = "login">
           % if c.logged_in:
