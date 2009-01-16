@@ -34,7 +34,8 @@ class DeckController(BaseController):
         
     def quiz(self, deck_id=None):
         c.deck = Deck.get_current_by_id_base30(deck_id)
-        c.cards = Card.get(c.deck.cards)                
+        c.cards = Card.get(c.deck.cards)
+        c.title = "| " + c.deck.name + " Quiz"            
         return render('quiz_deck.mako')
 
     def _create_me(self):

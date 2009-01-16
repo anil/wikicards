@@ -43,6 +43,7 @@ class CardController(BaseController):
     def revert(self, card_id):
         revision_number = request.params.get('revision')
         c.current_card = Card.get_current_by_id_base30(card_id)
+        c.title = "| " + "Revert Card"
         c.old_card = Card.get_revision_by_id_base30(card_id, int(revision_number))
         try:
             c.deck_id = request.params.get('referring_deck')
@@ -61,6 +62,7 @@ class CardController(BaseController):
         
         if user:
             c.card = Card.get_current_by_id_base30(card_id)
+            c.title = "| " + "Update Card"
             return render('/update_card.mako')
         else:
             continue_url = h.url_for(controller="Card", action="update", card_id=card_id, referring_deck = c.deck_id)
