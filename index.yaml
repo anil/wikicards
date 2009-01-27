@@ -10,14 +10,14 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 54 times in query history.
+# Used once in query history.
 - kind: Card
   properties:
   - name: id_base30
   - name: created
     direction: desc
 
-# Used 182 times in query history.
+# Used 12 times in query history.
 - kind: Deck
   properties:
   - name: id_base30

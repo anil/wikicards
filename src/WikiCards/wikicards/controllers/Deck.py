@@ -28,6 +28,7 @@ class DeckController(BaseController):
         return render('/show_deck.mako')
         
     def xml(self, deck_id=None):
+        response.headers['Content-type'] = "Content-Type: application/xml; charset=utf-8" 
         c.deck = Deck.get_current_by_id_base30(deck_id)
         c.cards = Card.get(c.deck.cards)                    
         return render('/xml_deck.mako')
