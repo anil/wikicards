@@ -19,6 +19,9 @@
           <td class="admin">
              <a href="${h.url_for(controller="/Card", action="update", card_id=card.id_base30, referring_deck=c.deck_id)}">Edit</a> / 
              <a href="${h.url_for(controller="/Card", action="view", card_id=card.id_base30, referring_deck=c.deck_id)}">History</a>
+             % if c.is_admin:
+             / <a href="${h.url_for(controller="/Card", action="delete", card_id=card.id_base30, referring_deck=c.deck_id)}">Delete</a>
+             % endif
            </td>
         </tr>
       % endfor
@@ -31,6 +34,11 @@
         <div>
           <a href="${h.url_for(controller='Deck', action='quiz', deck_id=c.deck_id)}">Take a quiz!</a>
         </div>
+        % if c.is_admin:
+        <div>
+          <a href="${h.url_for(controller='Deck', action='delete', deck_id=c.deck_id)}">Delete the deck.</a>
+        </div>
+        % endif
     </div>
     % else:
       There are currently no cards in this deck.  <a href="/card/create?deck_id=${c.deck_id}">Add one.</a>

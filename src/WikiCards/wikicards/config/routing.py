@@ -24,6 +24,7 @@ def make_map():
     map.connect('home_page','/', controller='Deck', action='index')
     map.connect('create_deck','/deck/create', controller='Deck', action='create')
     map.connect('view_deck','/deck/:deck_id', controller='Deck', action='view')
+    map.connect('delete_deck','/deck/:deck_id/delete', controller='Deck', action='delete')
     map.connect('xml_deck','/deck/:deck_id/view.xml', controller='Deck', action='xml')
     map.connect('quiz_deck','/deck/:deck_id/quiz', controller='Deck', action='quiz')
     
@@ -31,6 +32,7 @@ def make_map():
     #Card routes
     map.connect('create_card','/card/create', controller='Card', action='create')
     map.connect('update_card','/card/:card_id/update', controller='Card', action='update')
+    map.connect('delete_card','/card/:card_id/delete', controller='Card', action='delete')
     map.connect('view_card','/card/:card_id/view', controller='Card', action='view')
     map.connect('revert_card','/card/:card_id/revert', controller='Card', action='revert')
     

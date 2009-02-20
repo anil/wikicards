@@ -20,12 +20,31 @@ class DeckController(BaseController):
         return render('/show_decks.mako')
 
     def view(self, deck_id=None):
+        c.is_admin = users.is_current_user_admin()
         c.deck = Deck.get_current_by_id_base30(deck_id)
         c.cards = Card.get(c.deck.cards)
-            
         c.title = " | " + c.deck.name
 
         return render('/show_deck.mako')
+        
+    @dispatch_on(POST="_delete_me")     
+    def delete(self, deck_id=None):
+        if users.is_current_user_admin():
+            c.deck = Deck.get_current_by_id_base30(deck_id)
+            c.cards = Card.get(c.deck.cards)
+            c.title = " | " + c.deck.name
+            return render('/delete_deck.mako')
+        else:
+            #XXX Proper http error here
+            raise 'error'
+        
+    def _delete_me(self, deck_id=None):
+        if users.is_current_user_admin():
+            #XXX implement the delete feature here.
+            return deck_id
+        else:
+            #XXX Proper http error here
+            raise 'error'
         
     def xml(self, deck_id=None):
         response.headers['Content-type'] = "Content-Type: application/xml; charset=utf-8" 

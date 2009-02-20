@@ -68,6 +68,24 @@ class CardController(BaseController):
             continue_url = h.url_for(controller="Card", action="update", card_id=card_id, referring_deck = c.deck_id)
             c.login_url = users.create_login_url(continue_url)
             return render('/login.mako')
+            
+    @dispatch_on(POST="_delete_me")     
+    def delete(self, card_id=None):
+        if users.is_current_user_admin():
+            c.card = Card.get_current_by_id_base30(card_id)
+            c.title = " | " + c.card.term
+            return render('/delete_card.mako')
+        else:
+            #XXX Proper http error here
+            raise 'error'
+            
+    def _delete_me(self, card_id=None):
+        if users.is_current_user_admin():
+            #XXX implement the delete feature here.
+            return card_id
+        else:
+            #XXX Proper http error here
+            raise 'error'
         
     def _update_me(self):
         user = users.get_current_user()
