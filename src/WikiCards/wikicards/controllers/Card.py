@@ -93,7 +93,7 @@ class CardController(BaseController):
                 deck.cards.remove(current_card.key())
                 deck.put()
                 
-            #now actually 
+            #now actually delete the card and all of it revisions
             all_cards = Card.get_all_by_id_base30(card_id)
             db.delete(all_cards)
             try:

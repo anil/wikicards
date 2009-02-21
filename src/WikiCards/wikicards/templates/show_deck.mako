@@ -42,4 +42,10 @@
     </div>
     % else:
       There are currently no cards in this deck.  <a href="/card/create?deck_id=${c.deck_id}">Add one.</a>
+      <h4>Deck Actions</h4>
+       % if c.is_admin:
+       <div>
+          <a href="${h.url_for(controller='Deck', action='delete', deck_id=c.deck_id)}">Delete the deck.</a>
+       </div>
+       % endif
     % endif

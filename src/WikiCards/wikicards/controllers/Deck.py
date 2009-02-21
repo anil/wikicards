@@ -40,11 +40,11 @@ class DeckController(BaseController):
         
     def _delete_me(self, deck_id=None):
         if users.is_current_user_admin():
-            #XXX implement the delete feature here.
-            return deck_id
+            deck = Deck.get_all_by_id_base30(deck_id)
+            db.delete(deck)
+            redirect_to(h.url_for("/"))
         else:
-            #XXX Proper http error here
-            raise 'error'
+            abort(401)
         
     def xml(self, deck_id=None):
         response.headers['Content-type'] = "Content-Type: application/xml; charset=utf-8" 
