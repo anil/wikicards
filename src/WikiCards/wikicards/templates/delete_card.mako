@@ -5,5 +5,6 @@
        <div>
          <input type="submit" value="Delete" />
        </div>
+       <input type="hidden" name="deck_id" value="${c.deck_id}" />
      </form>
 

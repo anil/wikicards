@@ -34,6 +34,8 @@ class CardController(BaseController):
             
     def view(self, card_id):
         c.cards = Card.get_all_by_id_base30(card_id)
+        if len(c.cards) == 0:
+            abort(404)
         c.title = " | Card Revision History"
         c.num_cards = len(c.cards)
         c.deck_id = request.params.get('referring_deck')
@@ -74,18 +76,33 @@ class CardController(BaseController):
         if users.is_current_user_admin():
             c.card = Card.get_current_by_id_base30(card_id)
             c.title = " | " + c.card.term
+            c.deck_id = request.params['referring_deck']
             return render('/delete_card.mako')
         else:
-            #XXX Proper http error here
-            raise 'error'
+            abort(401)
             
     def _delete_me(self, card_id=None):
         if users.is_current_user_admin():
-            #XXX implement the delete feature here.
-            return card_id
+            current_card = Card.get_current_by_id_base30(card_id)
+            
+            #remove this card reference from all
+            #of the decks that this card is part of
+            member_deck_keys = current_card.decks
+            for key in member_deck_keys:
+                deck = db.get(key)
+                deck.cards.remove(current_card.key())
+                deck.put()
+                
+            #now actually 
+            all_cards = Card.get_all_by_id_base30(card_id)
+            db.delete(all_cards)
+            try:
+                referring_deck_id = request.params['deck_id']
+                redirect_to(h.url_for(controller="/Deck", action="view", deck_id=referring_deck_id))
+            except KeyError:
+                redirect_to(h.url_for("/"))
         else:
-            #XXX Proper http error here
-            raise 'error'
+            abort(401)
         
     def _update_me(self):
         user = users.get_current_user()
@@ -113,7 +130,7 @@ class CardController(BaseController):
                 redirect_to(h.url_for(controller='Card', action="view", card_id=card_new.id_base30))
             
         else:
-            raise 'you have to be logged in'
+            abort(401)
         
     def _create_me(self):
         user = users.get_current_user()
@@ -150,4 +167,4 @@ class CardController(BaseController):
             redirect_to(h.url_for(controller='Deck', action='view', deck_id=deck_id_base30))
             
         else:
-            raise 'not signed in'
+            abort(401)
