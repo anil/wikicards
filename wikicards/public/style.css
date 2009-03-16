@@ -338,3 +338,54 @@ margin-top: 1em;
 .show-revert {
  margin-bottom: 1em;   
 }
+
+/* Start - Flash Messages */
+
+div.flash {
+font-size:1.2em;
+padding:1em;
+margin:1em auto;
+width:80%;
+border:1px solid #ccccb8;
+}
+
+div.info {
+color:#000;
+background:#83d2e6;
+}
+
+div.info a {
+color:#176073;
+}
+
+div.info a:hover {
+color:#007a99;
+}
+
+div.notice {
+color:#000;
+background:#c6ff8e;
+}
+
+div.notice a {
+color:#6a993d;
+}
+
+div.notice a:hover {
+color:#007a99;
+}
+
+div.error {
+color:#fff;
+background:#f24e50;
+}
+
+div.error a {
+color:#801a1b;
+}
+
+div.error a:hover {
+color:#660002;
+}
+
+/* End - Flash Messages */

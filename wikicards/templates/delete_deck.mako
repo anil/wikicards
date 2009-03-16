@@ -7,7 +7,9 @@
        </div>
      </form>
 % else:
+    <div class="flash error">
     There are cards in this deck.  If you would like to delete this deck, please delete all of the cards
     in it first!
+    </div>
 % endif
 

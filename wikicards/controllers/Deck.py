@@ -24,7 +24,6 @@ class DeckController(BaseController):
         c.deck = Deck.get_current_by_id_base30(deck_id)
         c.cards = Card.get(c.deck.cards)
         c.title = " | " + c.deck.name
-
         return render('/show_deck.mako')
         
     @dispatch_on(POST="_delete_me")     
