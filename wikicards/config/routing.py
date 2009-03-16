@@ -22,6 +22,7 @@ def make_map():
     
     #Deck routes
     map.connect('home_page','/', controller='Deck', action='index')
+    map.connect('about_page','/about', controller='Admin', action='index')
     map.connect('create_deck','/deck/create', controller='Deck', action='create')
     map.connect('view_deck','/deck/:deck_id', controller='Deck', action='view')
     map.connect('delete_deck','/deck/:deck_id/delete', controller='Deck', action='delete')
