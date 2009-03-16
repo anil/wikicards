@@ -5,7 +5,7 @@ api_version: 1
 
 handlers:
 - url: .*
-  script: paste-deploy.py
+  script: runner.py 
 
 #skip_files: |
 # ^bin/.*$|
