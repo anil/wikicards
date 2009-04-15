@@ -79,11 +79,21 @@ Quiz for ${c.deck.name} deck.  Click here to relaunch the <a href="#" id="relaun
 <div id="card-list">
   % for card in c.cards:
   <div class="card">
-    <div class="term">
-      ${card.term}
+      % if c.reverse:
+          <div class="definition">
+          ${card.definition}
+      % else:
+          <div class="term">
+          ${card.term} 
+      % endif
     </div>
-    <div class="definition">
-      ${card.definition}
+    % if c.reverse:
+        <div class="term">
+        ${card.term}
+    % else:
+        <div class="definition">
+        ${card.definition} 
+    % endif
     </div>
   </div>
   % endfor
@@ -91,8 +101,14 @@ Quiz for ${c.deck.name} deck.  Click here to relaunch the <a href="#" id="relaun
 
 <div id="dialog" title="${c.deck.name}">
     <p id="card-description">Question:</p>
-    <p id="card-term">${c.cards[0].term}</p>
-    <p id="card-def">${c.cards[0].definition}</p>
+
+    % if c.reverse:
+        <p id="card-term">${c.cards[0].definition}</p>
+        <p id="card-def">${c.cards[0].term}</p>
+    % else:
+        <p id="card-term">${c.cards[0].term}</p>
+        <p id="card-def">${c.cards[0].definition}</p>
+    % endif         
 </div>
 
 

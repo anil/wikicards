@@ -34,6 +34,9 @@
         <div>
           <a href="${h.url_for(controller='Deck', action='quiz', deck_id=c.deck_id)}">Take a quiz!</a>
         </div>
+        <div>
+          <a href="${h.url_for(controller='Deck', action='quiz', deck_id=c.deck_id, reverse='True')}">Take a quiz!</a> (Given an answer, you have to produce the question)
+        </div>
         % if c.is_admin:
         <div>
           <a href="${h.url_for(controller='Deck', action='delete', deck_id=c.deck_id)}">Delete the deck.</a>
