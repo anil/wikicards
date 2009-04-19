@@ -27,7 +27,31 @@
             </div><!-- /#content -->
         </div><!-- /#main -->
         <div id="footer">
-                    <p class = "discreet">Created and produced by <a href="http://anilmakhijani.com">http://anilmakhijani.com</a> </p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0243156371147212";
+/* 468x60, created 4/15/09 */
+google_ad_slot = "5126384616";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<div id="contact" style="padding-top: 2em;">
+  Please send feedback here: <a href="http://anilmakhijani.com/about/">http://anilmakhijani.com/about/</a>
+</div>
+<script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+  try {
+    var pageTracker = _gat._getTracker("UA-8429317-1");
+    pageTracker._trackPageview();
+   } catch(err) {
+   }
+</script>
         </div><!-- /#footer -->
     </div><!-- /#container -->
  </body>
