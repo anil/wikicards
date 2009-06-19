@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 class DeckController(BaseController):
 
     def index(self):
-        c.decks = Deck.all()
+        c.decks = Deck.all().filter("show =", True)
         return render('/show_decks.mako')
 
     def view(self, deck_id=None):

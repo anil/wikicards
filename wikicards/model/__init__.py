@@ -39,6 +39,7 @@ class Card(WikiableContent):
 class Deck(WikiableContent):
     name = db.StringProperty(required=True)
     cards = db.ListProperty(db.Key, default=None)
+    show = db.BooleanProperty(default=True)
     
   
 
